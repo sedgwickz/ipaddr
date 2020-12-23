@@ -4,10 +4,13 @@ import fetch from "unfetch";
 export default function Home() {
   const [ip, setIp] = useState("");
   const [data, setData] = useState({ search_ip: "", addr: "", detail: "" });
+  const [loading, setLoading] = useState(false);
   const getIP = () => {
+    setLoading(true);
     fetch("/api/ip/?ip=" + ip)
       .then((r) => r.json())
-      .then((data) => setData(data));
+      .then((data) => setData(data))
+      .finally(() => setLoading(false));
   };
   useEffect(() => {
     getIP();
@@ -39,14 +42,25 @@ export default function Home() {
           </button>
         </div>
         <div className="flex flex-col items-center space-y-2">
-          <div>{data.search_ip}</div>
-          <div>{data.addr}</div>
-          <div>{data.detail}</div>
+          {!loading ? (
+            <>
+              {" "}
+              <div>{data.search_ip}</div>
+              <div>{data.addr}</div>
+              <div>{data.detail}</div>
+            </>
+          ) : (
+            <div className="space-y-2 w-1/3">
+              <div className="w-1/2 h-5 bg-gray-200 animate-pulse duration-300 ease-in rounded"></div>
+              <div className="w-full h-5 bg-gray-200 animate-pulse duration-300 ease-in rounded"></div>
+              <div className="w-full h-5 bg-gray-200 animate-pulse duration-300 ease-in rounded"></div>
+            </div>
+          )}
         </div>
         <div className="flex text-sm absolute bottom-2">
           相关网站：
           <span className="text-indigo-600 space-x-2">
-            <a href="https://jsonhunter.vercel.app" target="_blank">
+            <a href="https://github.com/sedgwickz/ipaddr" target="_blank">
               本站源码
             </a>
             <a href="https://jsonhunter.vercel.app" target="_blank">
