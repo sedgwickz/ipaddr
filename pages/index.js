@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-//import fetch from "unfetch";
+import fetch from "unfetch";
 
 export default function Home() {
   const [ip, setIp] = useState("");
