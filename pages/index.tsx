@@ -25,7 +25,7 @@ export default function Home() {
             .then((d) => getIP(d))
     }, [])
     return (
-        <div className='md:grid md:grid-cols-3 m-auto'>
+        <div className='lg:grid lg:grid-cols-3 m-auto'>
             <Head>
                 <title>IP Address - 纯真IP数据库</title>
                 <meta
@@ -46,7 +46,7 @@ export default function Home() {
                         获取最新纯真IP
                     </span>
                 </div>
-                <div className='flex flex-col w-full md:flex-row justify-center md:space-x-4 md:space-y-0 space-y-4 p-2'>
+                <div className='flex flex-col w-full lg:flex-row justify-center lg:space-x-4 lg:space-y-0 space-y-4 p-2'>
                     <input
                         value={ip}
                         onChange={(e) => setIp(e.target.value)}
@@ -58,7 +58,7 @@ export default function Home() {
                         }}
                     ></input>
                     <button
-                        className='justify-center p-2 md:px-8 md:py-2 whitespace-nowrap border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700'
+                        className='justify-center p-2 lg:px-8 lg:py-2 whitespace-nowrap border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700'
                         onClick={() => getIP()}
                     >
                         提交
@@ -67,7 +67,6 @@ export default function Home() {
                 <div className='flex flex-col items-center space-y-2'>
                     {!loading ? (
                         <>
-                            {' '}
                             <div>{data.search_ip}</div>
                             <div>{data.addr}</div>
                             <div>{data.detail}</div>
@@ -82,22 +81,25 @@ export default function Home() {
                 </div>
                 <div>
                     <div className='rounded bg-gray-50 p-4 text-sm space-y-2'>
-                        <div>Tips:</div>
+                        <div>tip:获取指定IP</div>
                         {/* <div className='space-x-4'>
                             <span>获取本机IP</span>
                             <span className='text-red-400 font-mono font-medium inline-block'>
                                 curl ipa.vercel.app/api
                             </span>
                         </div> */}
-                        <div className='space-x-4'>
-                            <span>获取指定IP</span>
-                            <span className='text-red-400 font-mono font-medium inline-block'>
-                                curl ipa.vercel.app/api/ip地址
-                            </span>
+                        <div className='flex flex-col space-y-2'>
+                            <div className='text-red-400 font-mono font-medium inline-block'>
+                                curl -L ipaddr.vercel.app/api/ip地址
+                            </div>
+                            <div>or</div>
+                            <div className='text-red-400 font-mono font-medium inline-block'>
+                                curl https://ipaddr.vercel.app/api/ip地址
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className='flex text-sm md:absolute bottom-2 p-4'>
+                <div className='flex text-sm p-4'>
                     相关网站：
                     <span className='text-indigo-600 space-x-2'>
                         <a
