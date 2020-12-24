@@ -20,7 +20,9 @@ export default function Home() {
             .finally(() => setLoading(false))
     }
     useEffect(() => {
-        getIP()
+        fetch('https://ip.nuk.workers.dev')
+            .then((r) => r.text())
+            .then((d) => getIP(d))
     }, [])
     return (
         <div className='md:grid md:grid-cols-3 m-auto'>
@@ -81,12 +83,12 @@ export default function Home() {
                 <div>
                     <div className='rounded bg-gray-50 p-4 text-sm space-y-2'>
                         <div>Tips:</div>
-                        <div className='space-x-4'>
+                        {/* <div className='space-x-4'>
                             <span>获取本机IP</span>
                             <span className='text-red-400 font-mono font-medium inline-block'>
                                 curl ipa.vercel.app/api
                             </span>
-                        </div>
+                        </div> */}
                         <div className='space-x-4'>
                             <span>获取指定IP</span>
                             <span className='text-red-400 font-mono font-medium inline-block'>
@@ -95,7 +97,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div className='flex text-sm md:absolute bottom-2'>
+                <div className='flex text-sm md:absolute bottom-2 p-4'>
                     相关网站：
                     <span className='text-indigo-600 space-x-2'>
                         <a
