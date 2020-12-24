@@ -36,7 +36,7 @@ export default function Home() {
                 />
             </Head>
             <div
-                style={{ marginTop: '40%' }}
+                style={{ marginTop: '35%' }}
                 className='md:col-start-2 space-y-12'
             >
                 <div className='flex justify-center'>
@@ -50,7 +50,7 @@ export default function Home() {
                         onChange={(e) => setIp(e.target.value)}
                         type='text'
                         className='p-2 border rounded w-full flex-grow block'
-                        placeholder='请输入要查询的ip或域名'
+                        placeholder='请输入要查询的IP地址或域名'
                         onKeyDown={(e) => {
                             if (e.key == 'Enter') getIP()
                         }}
